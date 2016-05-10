@@ -1,5 +1,7 @@
 package kr.hs.emirim.grace0106.resevationsystem;
 
+import android.graphics.Color;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     Chronometer chrono;
@@ -45,6 +49,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 calView.setVisibility(View.INVISIBLE);
                 timePick.setVisibility(View.VISIBLE);
+            }
+        });
+
+        butStart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                chrono.setBase(SystemClock.elapsedRealtime());
+                chrono.start();
+                chrono.setTextColor(Color.RED);
+            }
+        });
+
+        butDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chrono.stop();
+                chrono.setTextColor(Color.BLUE);
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(calView.getDate());
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH)+1;
+                int date = cal.get(Calendar.DATE);
+                //int hour = timePick.getHour();
+                //int minute = timePick.getMinute();
+                String dateAndTime = year+"년 "+month+"월 "+date+"일";
+                textResult.setText(dateAndTime);
             }
         });
     }
