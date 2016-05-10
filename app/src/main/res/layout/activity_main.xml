@@ -54,10 +54,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></CalendarView>
             <TimePicker
-                android:id="@+id/time"
+                android:id="@+id/time_pick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"></TimePicker>
+                android:timePickerMode="spinner"></TimePicker>
         </FrameLayout>
     </LinearLayout>
     <LinearLayout
